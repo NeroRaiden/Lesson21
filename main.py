@@ -4,7 +4,7 @@ import random
 import aiogram
 from aiogram import Bot, Dispatcher, executor, types
 from decouple import config
-API_TOKEN = config('TELE_API_KEY')
+API_TOKEN = config('API_TOKEN')
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -13,8 +13,9 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
-folder_answers ='lesson21/answers'
+folder_answers ='Lesson21/answers'
 init_file = json.load(open(folder_answers+'init.json', 'r', encoding='utf-8'))
+
 def get_random_answer(path):
      with open(path, 'r', encoding='utf-8') as f:
         lines = f.readlines()
