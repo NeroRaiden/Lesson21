@@ -13,8 +13,10 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
-folder_answers ='Lesson21/answers'
-init_file = json.load(open(folder_answers+'init.json', 'r', encoding='utf-8'))
+#folder_answers = 'Lesson21/answers/'
+#init_file = json.load(open(folder_answers+'init.json', 'r', encoding='utf-8'))
+
+init_file = json.load(open('D:\Labs\PythonVs\Lesson21\/answers\init.json', 'r', encoding='utf-8'))
 
 def get_random_answer(path):
      with open(path, 'r', encoding='utf-8') as f:
@@ -26,18 +28,15 @@ async def send_welcome(message: types.Message):
     await message.reply("Hi!\nI'm EchoBot!\nPowered by aiogram.")
 
 
-
-
 @dp.message_handler()
 async def echo(message: types.Message):
    if message.text in init_file:
-    path = folder_answers + init_file[message.text]
+    path = init_file[message.text]
+    #path = folder_answers + init_file[message.text]
     answer = get_random_answer (path)
     await message.answer(answer)
-   else:
-    await message.answer
+   else: 
     await message.answer(message.text)
-
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
